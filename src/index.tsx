@@ -25,7 +25,7 @@ export function onBoarding(dataOperation: string) {
   return new Promise((resolve, reject) => {
     console.log('CALL DOCLIVESSFLOW');
     let json = JSON.parse(dataOperation);
-    //console.log(json);
+    console.log(json);
     try {
       FaceidUpay.docLivenessFlow(
         json.operacionId,
@@ -39,7 +39,7 @@ export function onBoarding(dataOperation: string) {
         }
       );
     } catch (e) {
-      //console.log('ERROR INIT FACEID');
+      console.log('ERROR INIT FACEID');
       reject(e);
     }
   });
