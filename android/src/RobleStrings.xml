@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="zoom_action_im_ready">ESTOY LISTO</string>
+    <string name="zoom_instructions_header_ready">Prepárate Para\nTu Video Selfie</string>
+    <string name="zoom_instructions_message_ready">Enmarca Tu Rostro En\nEl Óvalo Pequeño, Luego El Óvalo Grande</string>
+    <string name="zoom_feedback_center_face">Centra Tu Cara</string>
+    <string name="zoom_feedback_face_not_found">Enmarca Tu Rostro</string>
+    <string name="zoom_feedback_face_not_looking_straight_ahead">Mira Hacia Adelante</string>
+    <string name="zoom_feedback_face_not_upright">Mantenga La Cabeza Recta</string>
+    <string name="zoom_feedback_hold_steady">Mantengase Estable</string>
+    <string name="zoom_feedback_move_phone_away">Aléjese</string>
+    <string name="zoom_feedback_move_phone_closer">Muévete Mas Cerca</string>
+    <string name="zoom_feedback_move_phone_even_closer">Aún Más Cerca</string>
+    <string name="zoom_feedback_move_phone_to_eye_level">Levante La Cámara Hasta El Nivel De Los Ojos</string>
+    <string name="zoom_camera_permission_header">Habilitar cámara</string>
+    <string name="zoom_camera_permission_message_enroll">Por favor, Active\nSu Camara.</string>
+    <string name="zoom_camera_permission_message_auth">Los Permisos De Tu Cámara Están Deshabilitados. Debe habilitarlos en su configuración </string>
+    <string name="zoom_camera_permission_enable_camera">HABILITAR CÁMARA</string>
+    <string name="zoom_camera_permission_launch_settings">AJUSTES DE LANZAMIENTO</string>
+    <string name="zoom_result_facemap_upload_message">Cargando\nEncriptado\nProcesando Imagen</string>
+    <string name="zoom_result_facemap_success_message">Prueba De Vida Confirmada</string>
+    <string name="zoom_result_success_message">Éxito</string>
+    <string name="zoom_retry_header"> Intentemos eso nuevamente </string>
+    <string name="zoom_retry_subheader_message"> Pero primero, eche un vistazo a su foto y corrija su entorno.</string>
+    <string name="zoom_retry_instruction_message_1"> Expresión neutra, sin sonreír </string>
+    <string name="zoom_retry_instruction_message_2"> Sin deslumbramiento o iluminación extrema </string>
+    <string name="zoom_retry_instruction_message_3" />
+    <string name="zoom_retry_your_image_label"> Tu Selfie </string>
+    <string name="zoom_retry_ideal_image_label"> Pose ideal </string>
+</resources>
