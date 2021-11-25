@@ -85,7 +85,7 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
 
      BioCaller.docLivenessFlow(context, dLicense, projectSecret, BaseURL, deviceKeyIdentifier, licenseKey, 2862);
     }catch (Exception e){
-      Log.d(TAG, e);
+      Log.d(TAG, e.getMessage());
       callBackError(e.getMessage());
     }
   }
