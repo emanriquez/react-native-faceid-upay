@@ -25,7 +25,7 @@ export function onBoarding(dataOperation: string) {
   return new Promise((resolve, reject) => {
     console.log('CALL DOCLIVESSFLOW');
     let json = JSON.parse(dataOperation);
-    console.log(json);
+    console.log('PARAM NATIVE', dataOperation);
     try {
       FaceidUpay.docLivenessFlow(
         json.operacionId,
