@@ -42,7 +42,7 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
     public FaceidUpayModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.reactContext = reactContext;
-        this.context =getCurrentActivity();
+        this.context =this;
         this.reactContext.addActivityEventListener(this);
     }
 
@@ -60,12 +60,26 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
     }
 
 
+  private static final String ERROR_NO_ACTIVITY = "E_NO_ACTIVITY";
+  private static final String ERROR_NO_ACTIVITY_MESSAGE = "Tried to do the something while not attached to an Activity";
+
+
 @ReactMethod
   public void docLivenessFlow(String Identifier, String Data,  Callback callback) {
+     final Activity activity = getCurrentActivity();
+
+      if (activity == null) {
+       errorCallback(ERROR_NO_ACTIVITY, ERROR_NO_ACTIVITY_MESSAGE);
+       callBackError(e.getMessage());
+      }
 
 
     this.callback = callback;
     try {
+
+
+
+
       Log.d(TAG, "INIT CAPTURE AND LIVENESS");
       JSONObject obj = new JSONObject(Data);
 
@@ -75,7 +89,6 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
       String projectSecret = obj.get("projectSecret").toString();
       String licenseKey = obj.get("licenseKey").toString();
 
-
         Log.d(TAG, "BaseURL" + BaseURL);
         Log.d(TAG, "deviceKeyIdentifier " + deviceKeyIdentifier);
         Log.d(TAG, "dLicense " + dLicense);
@@ -83,7 +96,7 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
         Log.d(TAG, "licenseKey " + licenseKey);
 
 
-     BioCaller.docLivenessFlow(context, dLicense, projectSecret, BaseURL, deviceKeyIdentifier, licenseKey, 2862);
+     BioCaller.docLivenessFlow(activity, dLicense, projectSecret, BaseURL, deviceKeyIdentifier, licenseKey, 2862);
     }catch (Exception e){
       Log.d(TAG, e.getMessage());
       callBackError(e.getMessage());
