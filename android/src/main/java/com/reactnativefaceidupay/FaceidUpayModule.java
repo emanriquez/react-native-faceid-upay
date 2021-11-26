@@ -114,11 +114,11 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
 
 
  private void callBackError(String sMensaje) {
-    callback.invoke(null, sMensaje);
+    callback.invoke("ERROR", sMensaje);
   }
 
   private void callBack(String sMensaje) {
-     callback.invoke(sMensaje);
+     callback.invoke(null,sMensaje);
   }
 
 
