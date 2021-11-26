@@ -44,6 +44,11 @@ android {
     }
 
 
+    viewBinding {
+      enabled = true
+    }
+
+
     // sourceSets {
     //     main {
     //         jniLibs.srcDirs = ['../libs/jniLibs']

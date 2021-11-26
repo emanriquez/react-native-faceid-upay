@@ -42,7 +42,7 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
     public FaceidUpayModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.reactContext = reactContext;
-        this.context =this;
+        //this.context =this;
         this.reactContext.addActivityEventListener(this);
     }
 
@@ -69,8 +69,8 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
      final Activity activity = getCurrentActivity();
 
       if (activity == null) {
-       errorCallback(ERROR_NO_ACTIVITY, ERROR_NO_ACTIVITY_MESSAGE);
-       callBackError(e.getMessage());
+       callBackError(ERROR_NO_ACTIVITY_MESSAGE);
+
       }
 
 
@@ -78,25 +78,39 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
     try {
 
 
-
-
       Log.d(TAG, "INIT CAPTURE AND LIVENESS");
       JSONObject obj = new JSONObject(Data);
 
       String BaseURL = obj.get("BaseURL").toString();
+
+
+
       String deviceKeyIdentifier = obj.get("deviceKeyIdentifier").toString();
       String dLicense = obj.get("dLicense").toString();
       String projectSecret = obj.get("projectSecret").toString();
-      String licenseKey = obj.get("licenseKey").toString();
+
+
+      String appid = obj.get("appid").toString();
+      String faceteckey = obj.get("faceteckey").toString();
+       String facetecexpired = obj.get("facetecexpired").toString();
+
+
+      String productionKeyText =
+        'appId      =  \"' + appid + '\n'+
+        'expiryDate = ' + facetecexpired+'\n'+
+        'key        = ' + faceteckey;
 
         Log.d(TAG, "BaseURL" + BaseURL);
         Log.d(TAG, "deviceKeyIdentifier " + deviceKeyIdentifier);
         Log.d(TAG, "dLicense " + dLicense);
         Log.d(TAG, "projectSecret " + projectSecret);
-        Log.d(TAG, "licenseKey " + licenseKey);
+        Log.d(TAG, "licenseKey " + productionKeyText);
 
 
-     BioCaller.docLivenessFlow(activity, dLicense, projectSecret, BaseURL, deviceKeyIdentifier, licenseKey, 2862);
+        BioCaller.docLivenessFlow(activity, dLicense, projectSecret, BaseURL, deviceKeyIdentifier, productionKeyText, 2862);
+
+
+
     }catch (Exception e){
       Log.d(TAG, e.getMessage());
       callBackError(e.getMessage());
