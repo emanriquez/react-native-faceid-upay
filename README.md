@@ -75,6 +75,25 @@ allprojects {
 npm install --save https://github.com/emanriquez/react-native-faceid-upay
 ```
 
+## AndroidManifest.xml
+
+```
+ <uses-permission android:name="android.permission.INTERNET" />
+
+ <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="com.amazon.device.messaging.permission.RECEIVE" />
+    <permission android:name="com.upayments.saborescard.permission.RECEIVE_ADM_MESSAGE" android:protectionLevel="signature" />
+    <uses-permission android:name="com.upayments.saborescard.permission.RECEIVE_ADM_MESSAGE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+```
+
 ## Usage
 
 ```js
@@ -87,14 +106,15 @@ let dataOperation = {
   deviceKeyIdentifier,
   dLicense,
   projectSecret,
-  licenseKey,
   operacionId,
+  licenceKey,
 };
 
 onBoarding(JSON.stringify(dataOperation))
   .then((result) => {
-    console.log('PROMISE ONBOARDING');
-    console.log(result);
+    if (result) {
+      SucessText(result);
+    }
   })
   .catch((err) => {
     console.log('ERROR ONBOARDING');
