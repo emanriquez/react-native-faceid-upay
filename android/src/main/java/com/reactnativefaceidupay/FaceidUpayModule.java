@@ -90,24 +90,18 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
       String projectSecret = obj.get("projectSecret").toString();
 
 
-      String appid = obj.get("appid").toString();
-      String faceteckey = obj.get("faceteckey").toString();
-       String facetecexpired = obj.get("facetecexpired").toString();
+      String licenceKey = obj.get("licenceKey").toString();
 
 
-      String productionKeyText =
-        'appId      =  \"' + appid + '\n'+
-        'expiryDate = ' + facetecexpired+'\n'+
-        'key        = ' + faceteckey;
 
         Log.d(TAG, "BaseURL" + BaseURL);
         Log.d(TAG, "deviceKeyIdentifier " + deviceKeyIdentifier);
         Log.d(TAG, "dLicense " + dLicense);
         Log.d(TAG, "projectSecret " + projectSecret);
-        Log.d(TAG, "licenseKey " + productionKeyText);
+        Log.d(TAG, "licenseKey " + licenceKey);
 
 
-        BioCaller.docLivenessFlow(activity, dLicense, projectSecret, BaseURL, deviceKeyIdentifier, productionKeyText, 2862);
+        BioCaller.docLivenessFlow(activity, dLicense, projectSecret, BaseURL, deviceKeyIdentifier, licenceKey, 2862);
 
 
 
@@ -124,18 +118,24 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
   }
 
   private void callBack(String sMensaje) {
-     callback.invoke("OK", sMensaje);
+     callback.invoke(sMensaje);
   }
 
 
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    Log.d(TAG, "requestCode: " + requestCode);
-    Log.d(TAG, "resultCode: " + resultCode);
-    Log.d(TAG, "data: " + data);
+    Log.d(TAG, "requestCode2: " + requestCode);
+    Log.d(TAG, "resultCode2: " + resultCode);
+    Log.d(TAG, "data2: " + data);
 
     if(requestCode == 2862){
       if(resultCode == Activity.RESULT_OK){
         FaceIdResultData faceIdResultData = BioCaller.getFaceIdResultData();
+
+         Gson gson = new Gson();
+        String json = gson.toJson(faceIdResultData.scanDocumentData);
+
+
+         Log.d(TAG, "data2: " + json);
         //Toast.makeText(this, "Flujo completado para " + faceIdResultData.scanDocumentData.getRut().toString() + " " + faceIdResultData.resultado, Toast.LENGTH_SHORT).show();
       } else {
         //Toast.makeText(this, "Flujo cancelado", Toast.LENGTH_SHORT).show();
@@ -178,7 +178,8 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
       FaceIdResultData resultData = BioCaller.getFaceIdResultData();
       try {
         Gson gson = new Gson();
-        String json = gson.toJson(resultData);
+      String json = gson.toJson(resultData.scanDocumentData);
+         Log.d(TAG, "dataCallback: " + json);
         callBack(json);
       } catch (Exception e){
         callBackError("Exception " + e.getMessage());
