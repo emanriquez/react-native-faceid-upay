@@ -108,6 +108,7 @@ let dataOperation = {
   projectSecret,
   operacionId,
   licenceKey,
+  ReportHost,
 };
 
 onBoarding(JSON.stringify(dataOperation))
