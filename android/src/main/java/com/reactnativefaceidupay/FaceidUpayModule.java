@@ -92,16 +92,17 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
 
       String licenceKey = obj.get("licenceKey").toString();
 
-
+      String ReportHost = obj.get("ReportHost").toString();
 
         Log.d(TAG, "BaseURL" + BaseURL);
         Log.d(TAG, "deviceKeyIdentifier " + deviceKeyIdentifier);
         Log.d(TAG, "dLicense " + dLicense);
         Log.d(TAG, "projectSecret " + projectSecret);
         Log.d(TAG, "licenseKey " + licenceKey);
+        Log.d(TAG, "ReportHost " + ReportHost);
 
 
-        BioCaller.docLivenessFlow(activity, dLicense, projectSecret, BaseURL, deviceKeyIdentifier, licenceKey, 2862);
+        BioCaller.docLivenessFlow(activity, dLicense, projectSecret, BaseURL, deviceKeyIdentifier, licenceKey, ReportHost, 2862);
 
 
 
