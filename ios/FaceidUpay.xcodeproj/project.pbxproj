@@ -3,13 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-
-		5E555C0D2413F4C50049A1A2 /* FaceidUpay.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* FaceidUpay.m */; };
-
+		511EA54727D1A6930048D7F6 /* Microblink.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 511EA54627D1A6930048D7F6 /* Microblink.xcframework */; platformFilter = ios; };
+		511EA54927D1A6A30048D7F6 /* FaceTecSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 511EA54827D1A6A30048D7F6 /* FaceTecSDK.xcframework */; platformFilter = ios; };
+		511EA54B27D1A6B90048D7F6 /* FaceIDLib.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 511EA54A27D1A6B90048D7F6 /* FaceIDLib.xcframework */; platformFilter = ios; };
+		511EA54D27D1A6BF0048D7F6 /* CryptoSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 511EA54C27D1A6BF0048D7F6 /* CryptoSwift.xcframework */; platformFilter = ios; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,10 +27,12 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libFaceidUpay.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFaceidUpay.a; sourceTree = BUILT_PRODUCTS_DIR; };
-
+		511EA54627D1A6930048D7F6 /* Microblink.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Microblink.xcframework; path = ../libs/ios/Microblink.xcframework; sourceTree = "<group>"; };
+		511EA54827D1A6A30048D7F6 /* FaceTecSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FaceTecSDK.xcframework; path = ../libs/ios/FaceTecSDK.xcframework; sourceTree = "<group>"; };
+		511EA54A27D1A6B90048D7F6 /* FaceIDLib.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FaceIDLib.xcframework; path = ../libs/ios/FaceIDLib.xcframework; sourceTree = "<group>"; };
+		511EA54C27D1A6BF0048D7F6 /* CryptoSwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CryptoSwift.xcframework; path = ../libs/ios/CryptoSwift.xcframework; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* FaceidUpay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceidUpay.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* FaceidUpay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceidUpay.m; sourceTree = "<group>"; };
-
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +40,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				511EA54927D1A6A30048D7F6 /* FaceTecSDK.xcframework in Frameworks */,
+				511EA54727D1A6930048D7F6 /* Microblink.xcframework in Frameworks */,
+				511EA54D27D1A6BF0048D7F6 /* CryptoSwift.xcframework in Frameworks */,
+				511EA54B27D1A6B90048D7F6 /* FaceIDLib.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,14 +58,24 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		511EA54127D1A5E90048D7F6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				511EA54C27D1A6BF0048D7F6 /* CryptoSwift.xcframework */,
+				511EA54A27D1A6B90048D7F6 /* FaceIDLib.xcframework */,
+				511EA54827D1A6A30048D7F6 /* FaceTecSDK.xcframework */,
+				511EA54627D1A6930048D7F6 /* Microblink.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-
 				B3E7B5881CC2AC0600A0062D /* FaceidUpay.h */,
 				B3E7B5891CC2AC0600A0062D /* FaceidUpay.m */,
-
 				134814211AA4EA7D00B7C361 /* Products */,
+				511EA54127D1A5E90048D7F6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,10 +115,9 @@
 			};
 			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "FaceidUpay" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 			);
 			mainGroup = 58B511D21A9E6C8500147676;
@@ -119,9 +135,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-
-				B3E7B58A1CC2AC0600A0062D /* FaceidUpay.m in Sources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,7 +247,6 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = FaceidUpay;
 				SKIP_INSTALL = YES;
-
 			};
 			name = Debug;
 		};
@@ -251,7 +263,6 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = FaceidUpay;
 				SKIP_INSTALL = YES;
-
 			};
 			name = Release;
 		};

@@ -185,8 +185,6 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
       } catch (Exception e){
         callBackError("Exception " + e.getMessage());
       }
-    }else {
-      callBackError("error to get info");
     }
   }
 }

@@ -23,15 +23,18 @@ export function multiply(a: number, b: number): Promise<number> {
 
 export function onBoarding(dataOperation: string) {
   return new Promise((resolve, reject) => {
-    console.log('CALL DOCLIVESSFLOW');
+    console.log('[NATIVE ONBOARDING CALL DOCLIVESSFLOW]');
     let json = JSON.parse(dataOperation);
-    console.log('PARAM NATIVE', dataOperation);
+    console.log('[NATIVE ONBOARDING PARAM]', dataOperation);
     try {
       FaceidUpay.docLivenessFlow(
         json.operacionId,
         dataOperation,
         (error: any, resultId: any) => {
+          console.log('[NATIVE ONBOARDING]', resultId, error);
+
           if (error) {
+            console.log('[NATIVE ONBOARDING ERROR]', error);
             reject(error);
           } else {
             resolve(resultId);
@@ -39,7 +42,6 @@ export function onBoarding(dataOperation: string) {
         }
       );
     } catch (e) {
-      console.log('ERROR INIT FACEID');
       reject(e);
     }
   });

@@ -1,0 +1,10 @@
+//
+//  FaceIDValues.xcconfig
+//  FaceIDLib
+//
+//  Created by Cesar Silva on 02-11-21.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+SERVICE_KEY=bf3c199c2470cb477d907b1e0917c17b

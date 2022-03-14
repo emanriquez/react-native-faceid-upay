@@ -1,0 +1,11 @@
+framework module FaceIDLib {
+  umbrella header "FaceIDLib.h"
+
+  export *
+  module * { export * }
+}
+
+module FaceIDLib.Swift {
+    header "FaceIDLib-Swift.h"
+    requires objc
+}

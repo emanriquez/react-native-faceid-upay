@@ -14,6 +14,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/emanriquez/react-native-faceid-upay.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m,mm}"
-
+  s.preserve_paths         = "package.json", "ios", "index.js"
+  s.dependency "FaceIDLib"
   s.dependency "React-Core"
 end

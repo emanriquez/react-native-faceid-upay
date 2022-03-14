@@ -1,0 +1,85 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)
+// swift-module-flags: -target arm64-apple-ios11.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name FaceIDLib
+import CoreLocation
+import CryptoSwift
+@_exported import FaceIDLib
+import FaceTecSDK
+import Foundation
+import LocalAuthentication
+import MapKit
+import Microblink
+import Swift
+import UIKit
+import _Concurrency
+@_hasMissingDesignatedInitializers public class UpayServices<T, D> {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class OrquestadorViewController : UIKit.UIViewController {
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+extension FaceIDLib.OrquestadorViewController : CoreLocation.CLLocationManagerDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func locationManager(_ manager: CoreLocation.CLLocationManager, didUpdateLocations locations: [CoreLocation.CLLocation])
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func locationManager(_ manager: CoreLocation.CLLocationManager, didChangeAuthorization status: CoreLocation.CLAuthorizationStatus)
+}
+public struct ScanDocumentData : Swift.Encodable {
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public enum ImageFormat {
+  case png
+  case jpeg(CoreGraphics.CGFloat)
+}
+extension UIKit.UIImage {
+  public func base64(format: FaceIDLib.ImageFormat = .png) -> Swift.String?
+}
+public struct FaceIdResultData : Swift.Encodable {
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@_inheritsConvenienceInitializers @objcMembers @objc public class BioCaller : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  public static var resultData: FaceIDLib.FaceIdResultData?
+  @objc public static var jsonResult: Swift.String?
+  @objc public static func docLivenessFlow(appDelegate: UIKit.UIApplicationDelegate, dLicense: Swift.String, projectSecret: Swift.String, bioEndPoint: Swift.String, bioKey: Swift.String, keyText: Swift.String, reportsEndpoint: Swift.String)
+  @objc public static func isFlowCompleted() -> Swift.Bool
+  @objc public static func getFaceIdResultData() -> Foundation.NSString?
+  @objc public static func docLivenessFlow()
+  public static func returnResult(resultData: FaceIDLib.FaceIdResultData?)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class DocScanViewController : UIKit.UIViewController {
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+extension FaceIDLib.DocScanViewController : Microblink.MBBlinkIdOverlayViewControllerDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func blinkIdOverlayViewControllerDidFinishScanning(_ blinkIdOverlayViewController: Microblink.MBBlinkIdOverlayViewController, state: Microblink.MBRecognizerResultState)
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func blinkIdOverlayViewControllerDidTapClose(_ blinkIdOverlayViewController: Microblink.MBBlinkIdOverlayViewController)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class LivenessViewController : UIKit.UIViewController {
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public var supportedInterfaceOrientations: UIKit.UIInterfaceOrientationMask {
+    @_Concurrency.MainActor(unsafe) @objc get
+  }
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public var shouldAutorotate: Swift.Bool {
+    @_Concurrency.MainActor(unsafe) @objc get
+  }
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+extension FaceIDLib.LivenessViewController : Foundation.URLSessionDelegate {
+}
+extension FaceIDLib.LivenessViewController : FaceTecSDK.FaceTecFaceScanProcessorDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func processSessionWhileFaceTecSDKWaits(sessionResult: FaceTecSDK.FaceTecSessionResult, faceScanResultCallback: FaceTecSDK.FaceTecFaceScanResultCallback)
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func onFaceTecSDKCompletelyDone()
+}

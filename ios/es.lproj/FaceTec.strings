@@ -1,0 +1,68 @@
+
+"FaceTec_accessibility_cancel_button" = "Cancelar";
+"FaceTec_accessibility_torch_button" = "Cambiar Luz";
+
+"FaceTec_action_ok" = "OK";
+"FaceTec_action_im_ready" = "Estoy Listo";
+"FaceTec_action_try_again" = "Intentar De Nuevo";
+"FaceTec_action_select_id_card" = "Foto ID";
+"FaceTec_action_select_passport" = "Pasaporte";
+"FaceTec_action_take_photo" = "Tomar Foto";
+"FaceTec_action_retake_photo" = "Tomar Foto";
+"FaceTec_action_accept_photo" = "Aceptar";
+
+"FaceTec_camera_permission_header" = "Habilitar Cámara";
+"FaceTec_camera_permission_message_enroll" = "Presiona el botón para dar pemisos para tu cámara frontal";
+"FaceTec_camera_permission_message_auth" = "Cámara deshabilitada. Cambia tus preferencias con el botón de abajo";
+"FaceTec_camera_permission_enable_camera" = "Habilitar Cámara";
+"FaceTec_camera_permission_launch_settings" = "SETTINGS";
+
+"FaceTec_feedback_center_face" = "Centra tu rostro";
+"FaceTec_feedback_face_not_found" = "Cara no encontrada";
+"FaceTec_feedback_face_not_looking_straight_ahead" = "Mira de frente";
+"FaceTec_feedback_face_not_upright" = "Mantén tu cabeza erguida";
+"FaceTec_feedback_hold_steady" = "No te muevas";
+"FaceTec_feedback_move_phone_away" = "Aléjate";
+"FaceTec_feedback_move_phone_closer" = "Acércate";
+"FaceTec_feedback_move_phone_even_closer" = "Más Cerca";
+"FaceTec_feedback_move_phone_to_eye_level" = "Mueve tu cámara a la altura de tus ojos";
+"FaceTec_feedback_use_even_lighting" = "Ilumina tu rostro de forma uniforme";
+
+"FaceTec_idscan_type_selection_header" = "Please Select Your\nID Document Type";
+"FaceTec_idscan_capture_tap_to_focus_message" = "Tap Screen To Focus";
+"FaceTec_idscan_capture_hold_steady_message" = "Please Hold Steady";
+"FaceTec_idscan_capture_passport_instruction_message" = "Show Passport Photo Page";
+"FaceTec_idscan_capture_id_card_front_instruction_message" = "Show Front of Photo ID";
+"FaceTec_idscan_capture_id_card_back_instruction_message" = "Show Back of Photo ID";
+"FaceTec_idscan_review_passport_instruction_message" = "Confirm Photo is Clear &amp; Legible";
+"FaceTec_idscan_review_id_card_front_instruction_message" = "Confirm Photo is Clear &amp; Legible";
+"FaceTec_idscan_review_id_card_back_instruction_message" = "Confirm Photo is Clear &amp; Legible";
+
+"FaceTec_instructions_header_ready_1" = "Prepara";
+"FaceTec_instructions_header_ready_2" = "Tu video selfie";
+"FaceTec_instructions_message_ready_1" = "Centra tu rostro en el óvalo,";
+"FaceTec_instructions_message_ready_2" = "Presiona Estoy Listo y Acércate";
+
+"FaceTec_presession_frame_your_face" = "Centra tu rostro en el óvalo";
+"FaceTec_presession_position_face_straight_in_oval" = "Mira al frente";
+"FaceTec_presession_hold_steady_3" = "No te muevas: 3";
+"FaceTec_presession_hold_steady_2" = "No te muevas: 2";
+"FaceTec_presession_hold_steady_1" = "Queda poco: 1";
+"FaceTec_presession_eyes_straight_ahead" = "Mira de frente";
+"FaceTec_presession_remove_dark_glasses" = "No uses lentes oscuros";
+"FaceTec_presession_neutral_expression" = "Expresión neutral, Sin sonreir";
+"FaceTec_presession_conditions_too_bright" = "Demasiado brillo";
+"FaceTec_presession_brighten_your_environment" = "Ilumina tu entorno";
+
+"FaceTec_result_facescan_upload_message" = "Subiendo\n3D FaceScan\nEncriptado";
+"FaceTec_result_success_message" = "Éxito";
+"FaceTec_result_idscan_upload_message" = "Subiendo\nID Scan\nEncriptado";
+"FaceTec_result_idscan_unsuccess_message" = "ID Photo\nDid Not Match\nUser\'s Face";
+
+"FaceTec_retry_header" = "Intentemos nuevamente...";
+"FaceTec_retry_subheader_message" = "Necesitamos un video más claro.";
+"FaceTec_retry_instruction_message_1" = "Expresión neutra, Sin sonreir";
+"FaceTec_retry_instruction_message_2" = "Sin brillos ni luz extrema";
+"FaceTec_retry_instruction_message_3" = "Demasiado borroso, Limpia tu cámara";
+"FaceTec_retry_your_image_label" = "Tu selfie";
+"FaceTec_retry_ideal_image_label" = "Ideal";
