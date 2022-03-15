@@ -17,24 +17,23 @@ const FaceidUpay = NativeModules.FaceidUpay
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return FaceidUpay.multiply(a, b);
-}
+
 
 export function onBoarding(dataOperation: string) {
   return new Promise((resolve, reject) => {
-    console.log('[NATIVE ONBOARDING CALL DOCLIVESSFLOW]');
+    //console.log('[NATIVE ONBOARDING CALL DOCLIVESSFLOW]');
     let json = JSON.parse(dataOperation);
-    console.log('[NATIVE ONBOARDING PARAM]', dataOperation);
+
+    //console.log('[NATIVE ONBOARDING PARAM]', dataOperation);
     try {
-      FaceidUpay.docLivenessFlow(
+      NativeModules.FaceidUpay.docLivenessFlow(
         json.operacionId,
         dataOperation,
         (error: any, resultId: any) => {
-          console.log('[NATIVE ONBOARDING]', resultId, error);
+          //console.log('[NATIVE ONBOARDING]', resultId, error);
 
           if (error) {
-            console.log('[NATIVE ONBOARDING ERROR]', error);
+            //console.log('[NATIVE ONBOARDING ERROR]', error);
             reject(error);
           } else {
             resolve(resultId);

@@ -133,7 +133,7 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
         FaceIdResultData faceIdResultData = BioCaller.getFaceIdResultData();
 
          Gson gson = new Gson();
-        String json = gson.toJson(faceIdResultData.scanDocumentData);
+        String json = gson.toJson(faceIdResultData);
 
 
          Log.d(TAG, "data2: " + json);
@@ -179,7 +179,7 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
       FaceIdResultData resultData = BioCaller.getFaceIdResultData();
       try {
         Gson gson = new Gson();
-      String json = gson.toJson(resultData.scanDocumentData);
+      String json = gson.toJson(resultData);
          Log.d(TAG, "dataCallback: " + json);
         callBack(json);
       } catch (Exception e){
