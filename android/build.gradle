@@ -44,7 +44,9 @@ android {
     }
 
 
-
+viewBinding {
+      enabled = true
+    }
 
 
     // sourceSets {
