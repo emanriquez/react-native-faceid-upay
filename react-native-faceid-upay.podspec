@@ -15,6 +15,6 @@ Pod::Spec.new do |s|
 
   s.source_files = "ios/**/*.{h,m,mm}"
   s.preserve_paths         = "package.json", "ios", "index.js"
-  s.dependency "FaceIDLib"
+
   s.dependency "React-Core"
 end
