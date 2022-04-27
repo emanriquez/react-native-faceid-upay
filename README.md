@@ -118,7 +118,7 @@ onBoarding(JSON.stringify(dataOperation))
     }
   })
   .catch((err) => {
-    console.log('ERROR ONBOARDING');
+    //console.log('ERROR ONBOARDING');
   });
 ```
 
