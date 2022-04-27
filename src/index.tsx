@@ -17,8 +17,6 @@ const FaceidUpay = NativeModules.FaceidUpay
       }
     );
 
-
-
 export function onBoarding(dataOperation: string) {
   return new Promise((resolve, reject) => {
     //console.log('[NATIVE ONBOARDING CALL DOCLIVESSFLOW]');
