@@ -1,2 +1,2 @@
 configurations.maybeCreate("default")
-artifacts.add("default", file('facetec-sdk-9.4.4.aar'))
+artifacts.add("default", file('facetec-sdk-9.4.9.aar'))
