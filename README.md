@@ -20,8 +20,8 @@ react-native link react-native-faceid-upay
 6. Linkear manualmente en setting.gradle en carpeta Android otras librerias requeridas
 include ':deviceSecurity'
 project(':deviceSecurity').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-faceid-upay/libs/deviceSecurity')
-include ':faceIdLibRelease'
-project(':faceIdLibRelease').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-faceid-upay/libs/faceIdLibRelease')
+include ':ubiometrics'
+project(':ubiometrics').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-faceid-upay/libs/ubiometrics')
 include ':facetec'
 project(':facetec').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-faceid-upay/libs/facetec')
 
@@ -102,25 +102,100 @@ import { onBoarding } from 'react-native-faceid-upay';
 // ...
 
 let dataOperation = {
-  BaseURL,
-  deviceKeyIdentifier,
-  dLicense,
-  projectSecret,
-  operacionId,
-  licenceKey,
-  ReportHost,
+   operacionId: "2222222", //numero de operacion interna
+   apikey: "ke_f0f5bfacd9f64341811820f266a9bfad", //apikey privada solitiar a upayments
+   url: "https://api-fct-dev.u-payments.com/bridge", //url privada, solicitar a upayments
+   onboarding: true, //flujo onboarding
+   gov: true, //revisara datos registro civil o gobierno
 };
 
 onBoarding(JSON.stringify(dataOperation))
   .then((result) => {
     if (result) {
-      SucessText(result);
+      //LOS RESULTADOS VER ANEXO 1. EL RESULTADO VIENE EN FORMATO STRING
+      console.log(result);
     }
   })
   .catch((err) => {
-    //console.log('ERROR ONBOARDING');
+    console.log('ERROR ONBOARDING' , err.toString());
   });
 ```
+
+
+## RESPUESTA RESULTADOS
+```
+{
+    "token": "to_ff1ea89768e245ffb4e3fbdc3f7422ab",
+    "score": "3", //MAXIMO 3
+    "status": "Compare Finish", //ESTATUS FINAL
+    "approbe": true, //RESULTADO GENERAL DE ONBOARDING
+    "datauser": { //DATOS DE PERSONA
+        "nombre": "XXXXX",
+        "apellido": "XXXXX",
+        "dateOfBirth": "May 28, 1985 00:00:00",
+        "rut": "11.111.111-K",
+        "documentNumber": "520879999",
+        "profesion": "XXXXX",
+        "nationality": "XXXX",
+        "dateOfExpiry": "May 28, 2025 00:00:00",
+        "sexo": "M" //M O F
+    },
+    "dataliveness": { //PRUEBAS DE VIDA RESULTADOS OBTENIDOS
+        "externalDatabaseRefID": "05547212-13fc-11ed-a820-6339ebbe8c81",
+        "ageEstimateGroupEnumInt": 4,
+        "success": true,
+        "wasProcessed": true,
+        "callData": "15e79c67-a643-4055-ad0c-d2684c1cf965"
+    },
+    "dataregister": {. // REGISTRO DE USUARIO EN BASE PARA LOGIN
+        "matchLevel": 5,
+        "success": true,
+        "wasProcessed": true,
+        "error": false
+    },
+    "spoofy": { //FALSEDAD DEL DOCUMENTO
+        "DIGITAL": {
+            "status": true,
+            "score": 0.1,
+            "th": 0.99
+        },
+        "COPY": {
+            "status": true,
+            "score": 0.1,
+            "th": 0.99
+        },
+        "FAKE": {
+            "status": true,
+            "score": 0.1,
+            "th": 0.99
+        }
+    },
+    "gov": { // RESULTADOS DE GOBIERNO
+        "CodigoRetorno": "10000",
+        "ExisteDetalle": "S",
+        "CedulaVigente": "SI", //SI VIGENTE / NO BLOQUEADA
+        "NumeroRegistros": "1",
+        "Detalles": {
+            "Detalle": [
+                {
+                    "RutConsultado": "011111111",
+                    "DigitoVerificador": "1",
+                    "TipoDocumento": "CEDUL",
+                    "NumeroSerie": "520874447",
+                    "Razon": "DOCUMENTO VIGENTE",
+                    "Fecha": "28-05-2025 00:00:00",
+                    "Fuente": "REGISTRO CIVIL"
+                }
+            ]
+        }
+    },
+    "location": { //LUGAR DE ONBOARDING
+        "latitude": "-33.4250626",
+        "longitude": "-70.6210114"
+    }
+}
+```
+
 
 ## Contributing
 

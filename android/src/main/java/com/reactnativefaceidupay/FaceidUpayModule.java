@@ -16,18 +16,15 @@ import com.facebook.react.module.annotations.ReactModule;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ActivityEventListener;
 
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import com.google.gson.Gson;
 
+import org.json.JSONException;
 
 
-import com.upaybiometrics.faceidlib.BioCaller;
-import com.upaybiometrics.faceidlib.models.FaceIdLoginData;
-import com.upaybiometrics.faceidlib.models.FaceIdResultData;
-import com.upaybiometrics.faceidlib.utils.Rut;
+import com.upayments.ubiometrics.BioCaller;
+
 
 @ReactModule(name = FaceidUpayModule.NAME)
 public class FaceidUpayModule extends ReactContextBaseJavaModule implements ActivityEventListener  {
@@ -79,30 +76,29 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
 
 
       Log.d(TAG, "INIT CAPTURE AND LIVENESS");
+     
       JSONObject obj = new JSONObject(Data);
 
-      String BaseURL = obj.get("BaseURL").toString();
+      String apikey = obj.get("apikey").toString();
+      String url = obj.get("url").toString();
+
+     
+
+       JSONObject function = new JSONObject();
+
+        //AGREGAMOS FUNCIONES QUE USAREMOS AUTOMATICAMENTE EN FLUJO
+        try {
+            function.put("onboarding", obj.getBoolean("onboarding"));
+            function.put("gov", obj.getBoolean("gov"));
+
+        }catch (JSONException e){
+            //TODO
+        }
 
 
+      BioCaller.CreateSession(activity, apikey, url, true, function, 2862);
 
-      String deviceKeyIdentifier = obj.get("deviceKeyIdentifier").toString();
-      String dLicense = obj.get("dLicense").toString();
-      String projectSecret = obj.get("projectSecret").toString();
-
-
-      String licenceKey = obj.get("licenceKey").toString();
-
-      String ReportHost = obj.get("ReportHost").toString();
-
-        Log.d(TAG, "BaseURL" + BaseURL);
-        Log.d(TAG, "deviceKeyIdentifier " + deviceKeyIdentifier);
-        Log.d(TAG, "dLicense " + dLicense);
-        Log.d(TAG, "projectSecret " + projectSecret);
-        Log.d(TAG, "licenseKey " + licenceKey);
-        Log.d(TAG, "ReportHost " + ReportHost);
-
-
-        BioCaller.docLivenessFlow(activity, dLicense, projectSecret, BaseURL, deviceKeyIdentifier, licenceKey, ReportHost, 2862);
+      //BioCaller.docLivenessFlow(activity, dLicense, projectSecret, BaseURL, deviceKeyIdentifier, licenceKey, ReportHost, 2862);
 
 
 
@@ -124,16 +120,14 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
 
 
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    Log.d(TAG, "requestCode2: " + requestCode);
-    Log.d(TAG, "resultCode2: " + resultCode);
-    Log.d(TAG, "data2: " + data);
+  
 
-    if(requestCode == 2862){
+      Log.d(TAG, "requestCode: " + requestCode);
+
+
+    if(requestCode == 3030){
       if(resultCode == Activity.RESULT_OK){
-        FaceIdResultData faceIdResultData = BioCaller.getFaceIdResultData();
-
-         Gson gson = new Gson();
-        String json = gson.toJson(faceIdResultData);
+         String json = BioCaller.getReturnapp();
 
 
          Log.d(TAG, "data2: " + json);
@@ -162,29 +156,22 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
 
   @Override
   public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
-    Log.d(TAG, "requestCode: " + requestCode);
+   // super.onActivityResult(requestCode, resultCode, data);
+     Log.d(TAG, "requestCode: " + requestCode);
     Log.d(TAG, "resultCode: " + resultCode);
     Log.d(TAG, "data: " + data);
 
-     if(resultCode == 2863){
-      FaceIdLoginData resultadoLogin = BioCaller.getLoginResultData();
-      try {
-        Gson gson = new Gson();
-        String json = gson.toJson(resultadoLogin);
-        callBack(json);
-      } catch (Exception e){
-        callBackError("Exception " + e.getMessage());
-      }
-    } else if(requestCode == 2862){
-      FaceIdResultData resultData = BioCaller.getFaceIdResultData();
-      try {
-        Gson gson = new Gson();
-      String json = gson.toJson(resultData);
-         Log.d(TAG, "dataCallback: " + json);
-        callBack(json);
-      } catch (Exception e){
-        callBackError("Exception " + e.getMessage());
-      }
-    }
+     if(requestCode==3030){
+            Log.d("FACEID","RESULT" +Activity.RESULT_OK);
+            if(resultCode== Activity.RESULT_OK){
+                String json = BioCaller.getReturnapp();
+                Log.d("FACEID", "onActivityResult");
+                Log.d("FACEID", "RESTURAPP"+json);
+                 callBack(json);
+            }
+        }
+
+
+    
   }
 }

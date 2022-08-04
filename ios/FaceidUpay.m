@@ -17,15 +17,7 @@ bool hasPendingOperation;
 
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_METHOD(getDeviceName:(RCTResponseSenderBlock)callback){
- @try{
-   NSString *deviceName = [[UIDevice currentDevice] name];
-   callback(@[[NSNull null], deviceName]);
- }
- @catch(NSException *exception){
-   callback(@[exception.reason, [NSNull null]]);
- }
-}
+
 
 RCT_EXPORT_METHOD(docLivenessFlow
                   :(NSString *)number
@@ -72,83 +64,8 @@ RCT_EXPORT_METHOD(docLivenessFlow
             hasPendingOperation = NO;
             [[NSNotificationCenter defaultCenter] removeObserver:self];
             NSLog(@"Got a notification");
-            //NSLog(BioCaller.getFaceIdResultData);
-
-            //PARSIN DATA
-            NSData* datareturn = [BioCaller.getFaceIdResultData dataUsingEncoding:NSUTF8StringEncoding];
-            NSError *e = nil;
-            NSDictionary *jsonOutput = [NSJSONSerialization JSONObjectWithData:datareturn options: NSJSONReadingMutableContainers error: &e];
-
-           // NSLog(@"%@",[jsonOutput objectForKey:@"scanDocumentData"]);
-
-
-            @try {
-                NSLog(@"RESULTADO@");
-                NSLog(@"resultado%@", [jsonOutput objectForKey:@"resultado"]);
-                NSLog(@"error%@", [jsonOutput objectForKey:@"error"]);
-                NSLog(@"rut%@", [[jsonOutput objectForKey:@"scanDocumentData"] objectForKey:@"rut"]);
-                NSLog(@"nombre%@", [[jsonOutput objectForKey:@"scanDocumentData"] objectForKey:@"nombre"]);
-                NSLog(@"apellido%@", [[jsonOutput objectForKey:@"scanDocumentData"] objectForKey:@"apellido"]);
-                NSLog(@"documentNumber%@", [[jsonOutput objectForKey:@"scanDocumentData"] objectForKey:@"documentNumber"]);
-                NSLog(@"sexo%@", [[jsonOutput objectForKey:@"scanDocumentData"] objectForKey:@"sexo"]);
-                NSLog(@"profesion%@", [[jsonOutput objectForKey:@"scanDocumentData"] objectForKey:@"profesion"]);
-                NSLog(@"NACIONALIDAD%@", [[jsonOutput objectForKey:@"scanDocumentData"] objectForKey:@"nationality"]);
-                NSLog(@"dateOfBirth:%@", [[jsonOutput objectForKey:@"scanDocumentData"] objectForKey:@"dateOfBirth"]);
-                NSLog(@"dateOfExpiry:%@", [[jsonOutput objectForKey:@"scanDocumentData"] objectForKey:@"dateOfExpiry"]);
-
-
-
-
-            } @catch (NSException *exception) {
-                NSLog(exception.reason);
-            }
-
-
-            @try {
-
-                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                NSString *dateBirth = [NSString stringWithFormat:@"%@", [[jsonOutput objectForKey:@"scanDocumentData"] objectForKey:@"dateOfBirth"]];
-                NSString *dateOfExpiry =[NSString stringWithFormat:@"%@", [[jsonOutput objectForKey:@"scanDocumentData"] objectForKey:@"dateOfExpiry"]];
-
-
-                NSDictionary *dataResultData = [NSDictionary dictionaryWithObjectsAndKeys:
-                dateBirth,@"dateOfBirth",
-                dateOfExpiry,@"dateOfExpiry",
-                [[jsonOutput objectForKey:@"scanDocumentData"] objectForKey:@"apellido"],@"apellido",
-                [[jsonOutput objectForKey:@"scanDocumentData"] objectForKey:@"rut"],@"rut",
-                [[jsonOutput objectForKey:@"scanDocumentData"] objectForKey:@"nombre"],@"nombre",
-                [[jsonOutput objectForKey:@"scanDocumentData"] objectForKey:@"documentNumber"],@"documentNumber",
-                [[jsonOutput objectForKey:@"scanDocumentData"] objectForKey:@"sexo"],@"sexo",
-                [[jsonOutput objectForKey:@"scanDocumentData"] objectForKey:@"profesion"],@"profesion",
-                [[jsonOutput objectForKey:@"scanDocumentData"] objectForKey:@"nacionalidad"],@"nacionalidad",
-                [[jsonOutput objectForKey:@"scanDocumentData"] objectForKey:@"nationality"],@"nationality",
-                [[jsonOutput objectForKey:@"scanDocumentData"] objectForKey:@"pais"],@"pais",
-                [[jsonOutput objectForKey:@"scanDocumentData"] objectForKey:@"tipoDocumento"],@"tipoDocumento",
-
-                nil];
-
-              //  NSLog(@"scanDocumentData %@",dataResultData);
-
-                NSDictionary *o1 = [NSDictionary dictionaryWithObjectsAndKeys:
-                [jsonOutput objectForKey:@"resultado"],@"resultado",
-                [jsonOutput objectForKey:@"error"],@"error",
-                dataResultData,@"scanDocumentData",
-                nil];
-
-
-                NSError *error;
-                NSData *jsonData = [NSJSONSerialization dataWithJSONObject:o1
-                                                                   options:NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
-                                                                     error:&error];
-
-                NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-                NSLog(@"JSON STRING%@",[NSString stringWithFormat:@"%@", jsonString]);
-                requestPermissionsResolve(@[[NSNull null],jsonString]);
-
-            } @catch (NSException *exception) {
-                NSLog(exception.reason);
-            }
-
+            NSLog(BioCaller.getFaceIdResultData);
+            requestPermissionsResolve(@[[NSNull null],BioCaller.getFaceIdResultData]);
             //resolve(BioCaller.getFaceIdResultData);
             //pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: BioCaller.getFaceIdResultData];
             //[self.commandDelegate sendPluginResult:pluginResult callbackId:commandAux.callbackId];
