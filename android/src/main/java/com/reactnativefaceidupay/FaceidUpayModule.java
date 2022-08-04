@@ -75,14 +75,14 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
     try {
 
 
-      Log.d(TAG, "INIT CAPTURE AND LIVENESS");
-     
+     // Log.d(TAG, "INIT CAPTURE AND LIVENESS");
+
       JSONObject obj = new JSONObject(Data);
 
       String apikey = obj.get("apikey").toString();
       String url = obj.get("url").toString();
 
-     
+
 
        JSONObject function = new JSONObject();
 
@@ -103,7 +103,7 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
 
 
     }catch (Exception e){
-      Log.d(TAG, e.getMessage());
+     // Log.d(TAG, e.getMessage());
       callBackError(e.getMessage());
     }
   }
@@ -120,9 +120,9 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
 
 
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
-  
 
-      Log.d(TAG, "requestCode: " + requestCode);
+
+      //Log.d(TAG, "requestCode: " + requestCode);
 
 
     if(requestCode == 3030){
@@ -130,7 +130,7 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
          String json = BioCaller.getReturnapp();
 
 
-         Log.d(TAG, "data2: " + json);
+        // Log.d(TAG, "data2: " + json);
         //Toast.makeText(this, "Flujo completado para " + faceIdResultData.scanDocumentData.getRut().toString() + " " + faceIdResultData.resultado, Toast.LENGTH_SHORT).show();
       } else {
         //Toast.makeText(this, "Flujo cancelado", Toast.LENGTH_SHORT).show();
@@ -157,21 +157,21 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
   @Override
   public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
    // super.onActivityResult(requestCode, resultCode, data);
-     Log.d(TAG, "requestCode: " + requestCode);
-    Log.d(TAG, "resultCode: " + resultCode);
-    Log.d(TAG, "data: " + data);
+    //  Log.d(TAG, "requestCode: " + requestCode);
+    // Log.d(TAG, "resultCode: " + resultCode);
+    // Log.d(TAG, "data: " + data);
 
      if(requestCode==3030){
-            Log.d("FACEID","RESULT" +Activity.RESULT_OK);
+           // Log.d("FACEID","RESULT" +Activity.RESULT_OK);
             if(resultCode== Activity.RESULT_OK){
                 String json = BioCaller.getReturnapp();
-                Log.d("FACEID", "onActivityResult");
-                Log.d("FACEID", "RESTURAPP"+json);
+              //  Log.d("FACEID", "onActivityResult");
+               // Log.d("FACEID", "RESTURAPP"+json);
                  callBack(json);
             }
         }
 
 
-    
+
   }
 }

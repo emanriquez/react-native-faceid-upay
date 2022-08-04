@@ -26,13 +26,13 @@ export function onBoarding(dataOperation: string) {
     //console.log('[NATIVE ONBOARDING CALL DOCLIVESSFLOW]');
     let json = JSON.parse(dataOperation);
 
-    console.log('[NATIVE ONBOARDING PARAM]', dataOperation);
+    //console.log('[NATIVE ONBOARDING PARAM]', dataOperation);
     try {
       NativeModules.FaceidUpay.docLivenessFlow(
         json.operacionId,
         dataOperation,
         (error: any, resultId: any) => {
-          console.log('[NATIVE ONBOARDING]', resultId, error);
+        //  console.log('[NATIVE ONBOARDING]', resultId, error);
 
           if (error) {
             //console.log('[NATIVE ONBOARDING ERROR]', error);
