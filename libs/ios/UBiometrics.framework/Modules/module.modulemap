@@ -1,0 +1,11 @@
+framework module UBiometrics {
+  umbrella header "UBiometrics.h"
+
+  export *
+  module * { export * }
+}
+
+module UBiometrics.Swift {
+    header "UBiometrics-Swift.h"
+    requires objc
+}
