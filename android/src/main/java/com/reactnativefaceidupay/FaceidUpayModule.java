@@ -112,6 +112,7 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
     }
   }
 
+@ReactMethod
   public void QR(String Identifier, Callback callback) {
      final Activity activity = getCurrentActivity();
 
@@ -129,6 +130,7 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
     }
   }
 
+@ReactMethod
   public void Barcode(String Identifier, Callback callback) {
      final Activity activity = getCurrentActivity();
 
