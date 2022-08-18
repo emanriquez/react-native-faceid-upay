@@ -2,22 +2,27 @@
 
 FaceId Upay
 _Requiere Licencias_
+_Requiere URL de pruebas y productivas_
 
-## Installation
+## Installation 
 
 ```CLONE PROJECT
 
 1. Clonar proyecto en tu sistema
 2. en Package.json dejar nueva dependencia vinculada a proyecto descargado
 
- "react-native-faceid-upay": "file:plugins-upay/react-native-faceid-upay"
+ "react-native-faceid-upay": "https://github.com/emanriquez/react-native-faceid-upay"
 
 4. Ejecuta yarn o npm install
 
 5. Linkea proyecto para Android y IOS
 react-native link react-native-faceid-upay
+```
 
-6. Linkear manualmente en setting.gradle en carpeta Android otras librerias requeridas
+## Instalación ANDROID
+```
+
+1. ANDROID -  Linkear manualmente en setting.gradle en carpeta Android otras librerias requeridas
 include ':deviceSecurity'
 project(':deviceSecurity').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-faceid-upay/libs/deviceSecurity')
 include ':ubiometrics'
@@ -26,11 +31,11 @@ include ':facetec'
 project(':facetec').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-faceid-upay/libs/facetec')
 
 
-7. En Android archivo local.properties agregar:
+2. archivo local.properties agregar:
 
 org.gradle.jvmargs=-XX\:MaxHeapSize\=512m -Xmx512m
 
-8. en Android archivo gradle.properties agregar:
+3. archivo gradle.properties agregar:
 
 org.gradle.parallel=false
 org.gradle.caching=false
@@ -39,7 +44,7 @@ org.gradle.configureondemand=false
 org.gradle.jvmargs=-Xmx4096m -XX:MaxPermSize=4096m -XX:+HeapDumpOnOutOfMemoryError
 
 
-9. en Andrio archivo build.gragle agregar nueva dependencia de microblink
+4.  build.gradle agregar nueva dependencia de microblink
 
 allprojects {
     repositories {
@@ -56,14 +61,12 @@ allprojects {
 
         google()
         maven { url 'https://www.jitpack.io' }
-         maven { url 'https://maven.microblink.com' }
+        maven { url 'https://maven.microblink.com' }
     }
 }
 
 
-10. Versiones compatible
-
-
+5. Versiones compatible
         minSdkVersion = 22
         compileSdkVersion = 31
         targetSdkVersion = 30
@@ -71,12 +74,8 @@ allprojects {
 
 
 
-
-npm install --save https://github.com/emanriquez/react-native-faceid-upay
 ```
-
-## AndroidManifest.xml
-
+## AndroidManifest.xml  agregar permisos necesarios 
 ```
  <uses-permission android:name="android.permission.INTERNET" />
 
@@ -94,20 +93,53 @@ npm install --save https://github.com/emanriquez/react-native-faceid-upay
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 ```
 
-## Usage
+
+
+## Instalación IOS
+```
+1. Importa FRAMEWORK siguientes en tu proyecto IOS (folder Libs/IOS)
+
+- CryptoSwift.xcframework
+- FaceTecSDK.xcframework
+- Microblink.xcframework
+- UBiometrics.framework
+
+
+
+2. Vincular Framework y Libreria las cuales deben ser con Embed & Sign las 4 librerias
+
+3.  Info.plis debes agregar los permisos siguientes:
+
+SERVICE_KEY
+Privacy - Camera Usage Description
+Privacy - Location Always and When In Use Usage Description
+Privacy - Location Always Usage Description
+Privacy - Location When In Use Usage Description
+
+
+
+```
+
+## ¿Cómo Usar en ReactNativa?
+
 
 ```js
+1. Importa la libreria a tu Vista
+
 import { onBoarding } from 'react-native-faceid-upay';
 
-// ...
+2. Agrega la siguiente sentencia de inicialización
 
 let dataOperation = {
-   operacionId: "2222222", //numero de operacion interna
-   apikey: "ke_f0f5bfacd9f64341811820f266a9bfad", //apikey privada solitiar a upayments
-   url: "https://api-fct-dev.u-payments.com/bridge", //url privada, solicitar a upayments
+   operacionId: "2222222", //Op interna Cliente
+   apikey: "ke_f0f5bfacd9f64341811820f266a9bfad", //apikey privada
+   url: "https://api-fct-dev.u-payments.com/bridge", //url privada
    onboarding: true, //flujo onboarding
    gov: true, //revisara datos registro civil o gobierno
 };
+
+
+3. Inicia llamada de servicios
 
 onBoarding(JSON.stringify(dataOperation))
   .then((result) => {
@@ -122,7 +154,7 @@ onBoarding(JSON.stringify(dataOperation))
 ```
 
 
-## RESPUESTA RESULTADOS
+## RESPUESTA DE ONBOARDING CALL BACK (* SE RECOMIENDA INTERGRAR BACKEND DE COMPROBACIÓN DE RESULTADOS)
 ```
 {
     "token": "to_ff1ea89768e245ffb4e3fbdc3f7422ab",
@@ -196,11 +228,12 @@ onBoarding(JSON.stringify(dataOperation))
 }
 ```
 
+## Contribuido
+Elias Manriquez <eamanriquez@gmail.com>
 
-## Contributing
 
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+## Autor
+Elias Manriquez <eamanriquez@gmail.com>
 
 ## License
-
-MIT
+Este proyecto está bajo la Licencia (SaaS) 
