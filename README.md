@@ -19,6 +19,13 @@ _Requiere URL de pruebas y productivas_
 react-native link react-native-faceid-upay
 ```
 
+## Implementa 
+En Andrid/APP/build.gradle
+
+ implementation 'com.journeyapps:zxing-android-embedded:4.2.0'
+ implementation "com.airbnb.android:lottie:5.1.1"
+
+
 ## Instalación ANDROID
 ```
 
@@ -67,7 +74,7 @@ allprojects {
 
 
 5. Versiones compatible
-        minSdkVersion = 22
+        minSdkVersion = 24
         compileSdkVersion = 31
         targetSdkVersion = 30
 
@@ -77,6 +84,10 @@ allprojects {
 ```
 ## AndroidManifest.xml  agregar permisos necesarios 
 ```
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"  xmlns:tools="http://schemas.android.com/tools"  package="TUNOMBRE"
+
+  <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
  <uses-permission android:name="android.permission.INTERNET" />
 
  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -91,7 +102,17 @@ allprojects {
     <permission android:name="com.upayments.saborescard.permission.RECEIVE_ADM_MESSAGE" android:protectionLevel="signature" />
     <uses-permission android:name="com.upayments.saborescard.permission.RECEIVE_ADM_MESSAGE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+
+       <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="portrait"
+            tools:replace="android:screenOrientation"
+            android:stateNotNeeded="true"/>
+
+
 ```
+
 
 
 
