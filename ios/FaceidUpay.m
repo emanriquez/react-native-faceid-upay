@@ -1,5 +1,5 @@
 #import "FaceidUpay.h"
-#import <FaceIDLib/FaceIDLib-Swift.h>
+#import <UBiometrics/UBiometrics-Swift.h>
 #import <React/RCTLog.h>
 #import <UIKit/UIKit.h>
 
@@ -30,9 +30,9 @@ RCT_EXPORT_METHOD(docLivenessFlow
     @try {
         NSString *apikey = [jsonOutput objectForKey:@"apikey"];
         NSString *url = [jsonOutput objectForKey:@"url"];
-        bool *onboarding = [jsonOutput objectForKey:@"onboarding"];
-        bool *gov = [jsonOutput objectForKey:@"gov"];
-        [BioCaller CreateSessionWithAppDelegate:[[UIApplication sharedApplication] delegate] apiKey:apikey url:url tour:true function:"nul"];
+        NSString *onboarding = [jsonOutput objectForKey:@"onboarding"];
+        NSString *gov = [jsonOutput objectForKey:@"gov"];
+        [BioCaller CreateSessionWithAppDelegate:[[UIApplication sharedApplication] delegate] apiKey:apikey url:url tour:true function:@"nul"];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callBackApp) name:@"FIDNotification" object:nil];
         hasPendingOperation = YES;
     } @catch (NSException *exception) {
@@ -43,10 +43,10 @@ RCT_EXPORT_METHOD(docLivenessFlow
 
 
 - (void)callBackApp{
-        if (BioCaller.getReturnapp()  != nil){
+        if (BioCaller.getReturnapp!= nil){
             hasPendingOperation = NO;
             [[NSNotificationCenter defaultCenter] removeObserver:self];
-            requestPermissionsResolve(@[[NSNull null],BioCaller.getReturnapp()]);
+            requestPermissionsResolve(@[[NSNull null],BioCaller.getReturnapp]);
           
         }
 }
