@@ -21,12 +21,50 @@ export function multiply(a: number, b: number): Promise<number> {
   return FaceidUpay.multiply(a, b);
 }
 
+export function Barcode(dataOperation: string) {
+  return new Promise((resolve, reject) => {
+    let json = JSON.parse(dataOperation);
+    try {
+      NativeModules.FaceidUpay.Barcode(
+        json.operacionId,
+        (error: any, resultId: any) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(resultId);
+          }
+        }
+      );
+    } catch (e) {
+      reject(e);
+    }
+  });
+}
+
+
+export function QR(dataOperation: string) {
+  return new Promise((resolve, reject) => {
+    let json = JSON.parse(dataOperation);
+    try {
+      NativeModules.FaceidUpay.QR(
+        json.operacionId,
+        (error: any, resultId: any) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(resultId);
+          }
+        }
+      );
+    } catch (e) {
+      reject(e);
+    }
+  });
+}
+
 export function onBoarding(dataOperation: string) {
   return new Promise((resolve, reject) => {
-    //console.log('[NATIVE ONBOARDING CALL DOCLIVESSFLOW]');
     let json = JSON.parse(dataOperation);
-
-    //console.log('[NATIVE ONBOARDING PARAM]', dataOperation);
     try {
       NativeModules.FaceidUpay.docLivenessFlow(
         json.operacionId,

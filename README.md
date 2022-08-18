@@ -126,7 +126,7 @@ Privacy - Location When In Use Usage Description
 ```js
 1. Importa la libreria a tu Vista
 
-import { onBoarding } from 'react-native-faceid-upay';
+import { onBoarding, QR, Barcode } from 'react-native-faceid-upay';
 
 2. Agrega la siguiente sentencia de inicialización
 
@@ -135,12 +135,16 @@ let dataOperation = {
    apikey: "ke_f0f5bfacd9f64341811820f266a9bfad", //apikey privada
    url: "https://api-fct-dev.u-payments.com/bridge", //url privada
    onboarding: true, //flujo onboarding
+   loginqr: false, //flujo QR
+   login: false, //flujo login
    gov: true, //revisara datos registro civil o gobierno
+   other:"" //datos de login u otros
 };
 
 
 3. Inicia llamada de servicios
 
+//ONBOARDING / LOGIN / LOGIN QR
 onBoarding(JSON.stringify(dataOperation))
   .then((result) => {
     if (result) {
@@ -151,6 +155,39 @@ onBoarding(JSON.stringify(dataOperation))
   .catch((err) => {
     console.log('ERROR ONBOARDING' , err.toString());
   });
+
+
+
+let dataOperation = {
+   operacionId: "2222222", //Op interna Cliente
+};
+
+QR(JSON.stringify(dataOperation))
+  .then((result) => {
+    if (result) {
+      //LOS RESULTADOS VER ANEXO 1. EL RESULTADO VIENE EN FORMATO STRING
+      console.log(result);
+    }
+  })
+  .catch((err) => {
+    console.log('ERROR ONBOARDING' , err.toString());
+  });
+
+let dataOperation = {
+   operacionId: "2222222", //Op interna Cliente
+};
+Barcode(JSON.stringify(dataOperation))
+  .then((result) => {
+    if (result) {
+      //LOS RESULTADOS VER ANEXO 1. EL RESULTADO VIENE EN FORMATO STRING
+      console.log(result);
+    }
+  })
+  .catch((err) => {
+    console.log('ERROR ONBOARDING' , err.toString());
+  });
+
+
 ```
 
 

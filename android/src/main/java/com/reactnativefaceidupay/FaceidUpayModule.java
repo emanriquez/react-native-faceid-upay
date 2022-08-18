@@ -81,6 +81,7 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
 
       String apikey = obj.get("apikey").toString();
       String url = obj.get("url").toString();
+      String other = obj.get("other").toString();
 
 
 
@@ -90,13 +91,16 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
         try {
             function.put("onboarding", obj.getBoolean("onboarding"));
             function.put("gov", obj.getBoolean("gov"));
+            function.put("loginqr", obj.getBoolean("loginqr"));
+            function.put("login", obj.getBoolean("login"));
+            
 
         }catch (JSONException e){
             //TODO
         }
 
 
-      BioCaller.CreateSession(activity, apikey, url, true, function, 2862);
+      BioCaller.CreateSession(activity, apikey, url, true, function, 2862,other);
 
       //BioCaller.docLivenessFlow(activity, dLicense, projectSecret, BaseURL, deviceKeyIdentifier, licenceKey, ReportHost, 2862);
 
@@ -107,6 +111,41 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
       callBackError(e.getMessage());
     }
   }
+
+  public void QR(String Identifier, Callback callback) {
+     final Activity activity = getCurrentActivity();
+
+      if (activity == null) {
+       callBackError(ERROR_NO_ACTIVITY_MESSAGE);
+
+      }
+
+
+    this.callback = callback;
+    try {
+      BioCaller.QR(activity, 3032);
+    }catch (Exception e){
+      callBackError(e.getMessage());
+    }
+  }
+
+  public void Barcode(String Identifier, Callback callback) {
+     final Activity activity = getCurrentActivity();
+
+      if (activity == null) {
+       callBackError(ERROR_NO_ACTIVITY_MESSAGE);
+
+      }
+
+    this.callback = callback;
+    try {
+      BioCaller.Barcode(activity, 3031);
+    }catch (Exception e){
+      callBackError(e.getMessage());
+    }
+  }
+
+ 
 
 
 
@@ -128,10 +167,6 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
     if(requestCode == 3030){
       if(resultCode == Activity.RESULT_OK){
          String json = BioCaller.getReturnapp();
-
-
-        // Log.d(TAG, "data2: " + json);
-        //Toast.makeText(this, "Flujo completado para " + faceIdResultData.scanDocumentData.getRut().toString() + " " + faceIdResultData.resultado, Toast.LENGTH_SHORT).show();
       } else {
         //Toast.makeText(this, "Flujo cancelado", Toast.LENGTH_SHORT).show();
       }
@@ -156,22 +191,42 @@ public class FaceidUpayModule extends ReactContextBaseJavaModule implements Acti
 
   @Override
   public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
-   // super.onActivityResult(requestCode, resultCode, data);
-    //  Log.d(TAG, "requestCode: " + requestCode);
-    // Log.d(TAG, "resultCode: " + resultCode);
-    // Log.d(TAG, "data: " + data);
+  
 
      if(requestCode==3030){
            // Log.d("FACEID","RESULT" +Activity.RESULT_OK);
             if(resultCode== Activity.RESULT_OK){
                 String json = BioCaller.getReturnapp();
-              //  Log.d("FACEID", "onActivityResult");
-               // Log.d("FACEID", "RESTURAPP"+json);
+
                  callBack(json);
             }
         }
 
+       if(requestCode==3031){
+            if(resultCode== Activity.RESULT_OK){
+                callBack(BioCaller.getBarcode());
+            }
+        }
 
+        if(requestCode==3032){
+            if(resultCode== Activity.RESULT_OK){
+                callBack(BioCaller.getQRcode());
+            }
+        }
+
+        if(requestCode==3033){
+            if(resultCode== Activity.RESULT_OK){
+                callBack(BioCaller.getLoginResultDataString());
+            }
+        }
+
+        if(requestCode==3034){
+            if(resultCode== Activity.RESULT_OK){
+                callBack(BioCaller.getQRcode());
+            }
+        }
 
   }
 }
+
+
