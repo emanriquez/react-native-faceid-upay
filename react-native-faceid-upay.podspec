@@ -15,6 +15,8 @@ Pod::Spec.new do |s|
 
   s.source_files = "ios/**/*.{h,m,mm}"
   s.preserve_paths         = "package.json", "ios", "index.js"
-  s.dependency "UBiometrics"
+  s.vendored_frameworks = 'Frameworks/CryptoSwift.xcframework', 'Frameworks/FaceTecSDK.xcframework','Frameworks/Microblink.xcframework','UBiometrics.framework'
+  # s.dependency "UBiometrics"
+  s.dependency "lottie-ios"
   s.dependency "React-Core"
 end

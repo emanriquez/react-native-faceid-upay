@@ -1,6 +1,6 @@
 {
   "name": "react-native-faceid-upay",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "description": "FaceId Upay",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
